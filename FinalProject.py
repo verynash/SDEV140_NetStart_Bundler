@@ -20,6 +20,7 @@ def fullPackageEstimate(num_lines, high_speed, hotspot, internet, cable):
     if cable == "Advanced":
         price += 30
     messagebox.showinfo("Estimate", "Your package is estimated at $" + str(price) + "/month.")
+    return price
 
 def phoneInternetEstimate(num_lines, high_speed, hotspot, internet):
     price = 110
@@ -33,6 +34,7 @@ def phoneInternetEstimate(num_lines, high_speed, hotspot, internet):
     if internet == "Premium":
         price += 30
     messagebox.showinfo("Estimate", "Your package is estimated at $" + str(price) + "/month.")
+    return price
 
 def phoneCableEstimate(num_lines, high_speed, hotspot, cable):
     price = 115
@@ -44,6 +46,7 @@ def phoneCableEstimate(num_lines, high_speed, hotspot, cable):
     if cable == "Advanced":
         price += 30
     messagebox.showinfo("Estimate", "Your package is estimated at $" + str(price) + "/month.")
+    return price
 
 def internetCableEstimate(internet, cable):
     price = 85
@@ -54,6 +57,7 @@ def internetCableEstimate(internet, cable):
     if cable == "Advanced":
         price += 30
     messagebox.showinfo("Estimate", "Your package is estimated at $" + str(price) + "/month.")
+    return price
 
 def familyPhonePlanEstimate(num_lines, high_speed, hotspot):
     price = 70
@@ -63,6 +67,7 @@ def familyPhonePlanEstimate(num_lines, high_speed, hotspot):
     if hotspot == 1:
         price += 25
     messagebox.showinfo("Estimate", "Your package is estimated at $" + str(price) + "/month.")
+    return price
 
 def internetEstimate(internet):
     price = 40
@@ -71,12 +76,14 @@ def internetEstimate(internet):
     if internet == "Premium":
         price += 30
     messagebox.showinfo("Estimate", "Your package is estimated at $" + str(price) + "/month.")
+    return price
 
 def cableEstimate(cable):
     price = 45
     if cable == "Advanced":
         price += 30
     messagebox.showinfo("Estimate", "Your package is estimated at $" + str(price) + "/month.")
+    return price
 
 def phoneOptions():
     phone_frame = LabelFrame(top, text="Cellular Options - $70", padx=10, pady=10)
