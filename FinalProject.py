@@ -4,7 +4,7 @@ from tkinter import messagebox
 
 root = Tk()
 root.title("NetStart Bundler")
-root.geometry("600x600")
+root.geometry("700x760")
 
 def fullPackageEstimate(num_lines, high_speed, hotspot, internet, cable):
     price = 155
@@ -258,9 +258,13 @@ def displayCustomServiceOptions(phone_service, internet_service, cable_service):
     elif internet_service == 1:
         b = Button(top, text="Submit for Estimate", command=lambda: internetEstimate(internet_package.get()))
         b.pack()
-    else:
+    elif cable_service == 1:
         b = Button(top, text="Submit for Estimate", command=lambda: cableEstimate(cable_package.get()))
         b.pack()
+    else:
+        top.destroy()
+        openCustomizeWindow()
+
         
 def pickServiceCustomOptions():
     picker_frame = LabelFrame(window, padx=25, pady=25)
@@ -337,10 +341,18 @@ bundle_proceed_button.grid(row=4, column=2)
 alternate_frame = LabelFrame(root, text="Alternate Option", padx=25, pady=25)
 alternate_frame.pack()
 
+my_img1= ImageTk.PhotoImage(Image.open("./images/tv.png"))
+my_img2 = ImageTk.PhotoImage(Image.open("./images/internet.png"))
+
 alternate_label = Label(alternate_frame, text="Click below to customize your own package!")
 alternate_button = Button(alternate_frame, text="Customize", command=openCustomizeWindow)
-alternate_label.grid(row=0, column=0, padx=33, pady=10)
-alternate_button.grid(row=1, column=0, pady=10)
+img_label1 = Label(alternate_frame, image=my_img1)
+img_label2 = Label(alternate_frame, image=my_img2)
+alternate_label.grid(row=0, column=1, padx=33, pady=10)
+alternate_button.grid(row=1, column=1, pady=10)
+img_label1.grid(row=2, column=0, pady=10)
+img_label2.grid(row=2, column=2, pady=10)
+
 
 
 exit_lbl = Label(root, text="Click below to quit", pady=10)
