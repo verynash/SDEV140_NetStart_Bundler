@@ -1,11 +1,14 @@
+# Import tkinter and associated libraries
 from tkinter import *
 from PIL import ImageTk, Image
 from tkinter import messagebox
 
+# Instantiate main window
 root = Tk()
 root.title("NetStart Bundler")
 root.geometry("700x760")
 
+# Calculate and display estimate for a full packaged service plan
 def fullPackageEstimate(num_lines, high_speed, hotspot, internet, cable):
     price = 155
     price += ((num_lines - 1) * 15)
@@ -22,6 +25,7 @@ def fullPackageEstimate(num_lines, high_speed, hotspot, internet, cable):
     messagebox.showinfo("Estimate", "Your package is estimated at $" + str(price) + "/month.")
     return price
 
+# Calculate and display estimate for a phone and internet service plan
 def phoneInternetEstimate(num_lines, high_speed, hotspot, internet):
     price = 110
     price += ((num_lines - 1) * 15)
@@ -36,6 +40,7 @@ def phoneInternetEstimate(num_lines, high_speed, hotspot, internet):
     messagebox.showinfo("Estimate", "Your package is estimated at $" + str(price) + "/month.")
     return price
 
+# Calculate and display estimate for a phone and cable service plan
 def phoneCableEstimate(num_lines, high_speed, hotspot, cable):
     price = 115
     price += ((num_lines - 1) * 15)
@@ -48,6 +53,7 @@ def phoneCableEstimate(num_lines, high_speed, hotspot, cable):
     messagebox.showinfo("Estimate", "Your package is estimated at $" + str(price) + "/month.")
     return price
 
+# Calculate and display estimate for an internet and cable service plan
 def internetCableEstimate(internet, cable):
     price = 85
     if internet == "Advanced":
@@ -59,6 +65,7 @@ def internetCableEstimate(internet, cable):
     messagebox.showinfo("Estimate", "Your package is estimated at $" + str(price) + "/month.")
     return price
 
+# Calculate and display estimate for a phone only plan
 def familyPhonePlanEstimate(num_lines, high_speed, hotspot):
     price = 70
     price += ((num_lines - 1) * 15)
@@ -69,6 +76,7 @@ def familyPhonePlanEstimate(num_lines, high_speed, hotspot):
     messagebox.showinfo("Estimate", "Your package is estimated at $" + str(price) + "/month.")
     return price
 
+# Calculate and display estimate for an internet only plan
 def internetEstimate(internet):
     price = 40
     if internet == "Advanced":
@@ -78,6 +86,7 @@ def internetEstimate(internet):
     messagebox.showinfo("Estimate", "Your package is estimated at $" + str(price) + "/month.")
     return price
 
+# Calculate and display estimate for a cable only plan
 def cableEstimate(cable):
     price = 45
     if cable == "Advanced":
@@ -85,6 +94,7 @@ def cableEstimate(cable):
     messagebox.showinfo("Estimate", "Your package is estimated at $" + str(price) + "/month.")
     return price
 
+# Display the options available for phone service plans
 def phoneOptions():
     phone_frame = LabelFrame(top, text="Cellular Options - $70", padx=10, pady=10)
     phone_frame.pack()
@@ -121,6 +131,7 @@ def phoneOptions():
     speed_check.grid(row=1, column=2)
     hotspot_check.grid(row=2, column=2)
 
+# Display the options available for internet service plans
 def internetOptions():
     internet_frame = LabelFrame(top, text="Internet Options - $40", padx=10, pady=10)
     internet_frame.pack()
@@ -147,6 +158,7 @@ def internetOptions():
     advanced_radio.grid(row=1, column=2)
     premium_radio.grid(row=2, column=2)
     
+# Display the options available for cable service plans
 def cableOptions():
     cable_frame = LabelFrame(top, text="Cable Options - $45", padx=10, pady=10)
     cable_frame.pack()
@@ -167,6 +179,8 @@ def cableOptions():
     c_basic_radio.grid(row=0, column=2)
     c_advanced_radio.grid(row=1, column=2)
 
+# Displays the options for the full package service plan, including options for all three
+# services: phone, internet, and cable
 def fullPackageWindow():
     phoneOptions()
     internetOptions()
@@ -179,6 +193,7 @@ def fullPackageWindow():
                                                                                       cable_package.get()))
     b.pack()
 
+# Displays the options for the phone and internet bundle
 def phoneInternetWindow():
     phoneOptions()
     internetOptions()
@@ -189,6 +204,7 @@ def phoneInternetWindow():
                                                                                       internet_package.get()))
     b.pack()
 
+# Displays the options for the family phone plan package
 def familyPhonePlanWindow():
     phoneOptions()
 
@@ -197,6 +213,8 @@ def familyPhonePlanWindow():
                                                                                       hotspot.get()))
     b.pack()
 
+# Creates the window if one of the three bundle options is selected.
+# Also disables the root window buttons and enables the reset button.
 def openBundleWindow(bundle):
     bundle_proceed_button["state"] = "disabled"
     alternate_button["state"] = "disabled"
@@ -215,6 +233,8 @@ def openBundleWindow(bundle):
         familyPhonePlanWindow()   
         top.geometry("400x175")
 
+# Creates the window that allows a customer to choose the options for their custom
+# service package
 def displayCustomServiceOptions(phone_service, internet_service, cable_service):
     window.destroy()
     global top
@@ -265,7 +285,7 @@ def displayCustomServiceOptions(phone_service, internet_service, cable_service):
         top.destroy()
         openCustomizeWindow()
 
-        
+# Allows the customer to select which services they would like to bundle
 def pickServiceCustomOptions():
     picker_frame = LabelFrame(window, padx=25, pady=25)
     picker_frame.pack()
@@ -287,6 +307,8 @@ def pickServiceCustomOptions():
                                                                                                       cable_service.get()))
     service_button.pack()
 
+# Opens the window that the custom options will be displayed in. Also disables root window
+# buttons and enables the reset button
 def openCustomizeWindow():
     bundle_proceed_button["state"] = "disabled"
     alternate_button["state"] = "disabled"
@@ -297,16 +319,19 @@ def openCustomizeWindow():
     window.geometry("200x225")
     lbl = Label(window, text="What services would you like?", pady=10).pack()
     pickServiceCustomOptions()
-    
+
+# Destroys all windows other than the root window, and resets the buttons to default
 def reset():
     top.destroy()
     bundle_proceed_button["state"] = "normal"
     alternate_button["state"] = "normal"
     bundle_reset_button["state"] = "disabled"
 
+# Header
 header_label = Label(root, text="~NetStart Bundler~")
 header_label.pack()
 
+# Frame for bundle options
 bundle_frame = LabelFrame(root, text="Bundle Deals!", padx=25, pady=25)
 bundle_frame.pack()
 
@@ -320,30 +345,36 @@ bundle_lbl_1.grid(row=1, column=0, sticky=W, columnspan=2, pady=25)
 bundle_lbl_2.grid(row=2, column=0, sticky=W, columnspan=2, pady=25)
 bundle_lbl_3.grid(row=3, column=0, sticky=W, columnspan=2, pady=25)
 
+# Sets "Full Package" bundle to default for radio
 bundle = StringVar()
 bundle.set("Full Package")
 
+# Initializes PLANS for radiobutton
 PLANS = [
     ("Full Package","Full Package",1),
     ("Phone & Internet","Phone & Internet",2),
     ("Family Phone Plan","Family Phone Plan",3)
 ]
 
+# Creates radio buttons for each PLAN
 for text, plan, position in PLANS:
     Radiobutton(bundle_frame, variable=bundle, value=plan).grid(row=position, column=2, padx=25)
 
+# Creates reset and proceed buttons
 bundle_reset_button = Button(bundle_frame, text="Reset", command=reset, state="disabled")
 bundle_proceed_button = Button(bundle_frame, text="Proceed", command=lambda: openBundleWindow(bundle.get()))
 bundle_reset_button.grid(row=4, column=0)
 bundle_proceed_button.grid(row=4, column=2)
 
-
+# Creates the frame for alternate/customizable service packages
 alternate_frame = LabelFrame(root, text="Alternate Option", padx=25, pady=25)
 alternate_frame.pack()
 
+# Initializes immages
 my_img1= ImageTk.PhotoImage(Image.open("./images/tv.png"))
 my_img2 = ImageTk.PhotoImage(Image.open("./images/internet.png"))
 
+# Creates labels and buttons, adds images to labels, and then displays them
 alternate_label = Label(alternate_frame, text="Click below to customize your own package!")
 alternate_button = Button(alternate_frame, text="Customize", command=openCustomizeWindow)
 img_label1 = Label(alternate_frame, image=my_img1)
@@ -354,10 +385,11 @@ img_label1.grid(row=2, column=0, pady=10)
 img_label2.grid(row=2, column=2, pady=10)
 
 
-
+# Creates exit button to close application
 exit_lbl = Label(root, text="Click below to quit", pady=10)
 exit_button = Button(root, text="Exit", command=root.quit)
 exit_lbl.pack()
 exit_button.pack()
 
+# Runs the application
 root.mainloop()
